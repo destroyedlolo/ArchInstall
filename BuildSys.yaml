@@ -8,3 +8,4 @@
     - name: Update_pacman	# Yay is not yet installed
     - name: hostname
     - name: timezone
+    - name: locale

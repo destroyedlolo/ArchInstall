@@ -1,0 +1,9 @@
+language: fr_FR
+encoding: UTF-8
+
+i18n:
+  - fr_FR.UTF-8 UTF-8
+  - en_US.UTF-8 UTF-8
+
+keymap: fr
+
