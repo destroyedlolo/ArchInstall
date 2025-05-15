@@ -1,0 +1,8 @@
+- name: Build core system
+  hosts: buildSys
+  vars:
+    # As the dedicated user doesn't exist yet, we need to use root
+    ansible_user: root
+  tasks:
+    - name: Check who am I
+      command: whoami

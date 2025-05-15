@@ -5,4 +5,13 @@ x86:
   hosts:
     poc:
       ansible_host: 192.168.0.30
-      ansible_user: root
+      ansible_user: ansible
+
+######
+# Stages
+######
+
+# Build core systems
+buildSys:
+  hosts:
+    poc
