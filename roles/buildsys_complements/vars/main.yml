@@ -1,0 +1,4 @@
+Additional_packages:
+  - archlinux-keyring
+  - git
+  - base-devel

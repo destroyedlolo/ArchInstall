@@ -9,3 +9,4 @@
     - name: hostname
     - name: timezone
     - name: locale
+    - name: buildsys_complements
