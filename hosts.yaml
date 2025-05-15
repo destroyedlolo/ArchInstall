@@ -1,0 +1,8 @@
+# Hosts definition
+
+# x86 POC/Crash machines
+x86:
+  hosts:
+    poc:
+      ansible_host: 192.168.0.30
+      ansible_user: root
