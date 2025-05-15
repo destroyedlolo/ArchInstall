@@ -6,3 +6,4 @@
 
   roles:
     - name: hostname
+    - name: timezone
