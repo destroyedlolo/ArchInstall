@@ -1,0 +1,9 @@
+---
+
+- name: update cache
+  ansible.builtin.pacman:
+    update_cache: true
+
+- name: upgrade
+  ansible.builtin.pacman:
+    upgrade: true
