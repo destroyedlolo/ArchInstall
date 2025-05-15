@@ -1,0 +1,30 @@
+---
+
+- name: Which is the new host name
+  debug:
+    var: new_hostname
+
+- name: set the host name
+  ansible.builtin.hostname:
+    name: "{{ new_hostname }}"
+
+- name: Update /etc/host
+  ansible.builtin.lineinfile:
+    path: "/etc/hosts"
+    regexp: '^127\.0\.1\.1'
+    line: "127.0.1.1 {{ new_hostname }}"
+    state: present
+
+- name: Check if /etc/hostname exists
+  ansible.builtin.stat:
+    path: "/etc/hostname"
+  register: file_stat
+
+- name: Create it if it doesn't exists
+  ansible.builtin.copy:
+    dest: "/etc/hostname"
+    content: "{{ new_hostname }}"
+    owner: root
+    group: root
+    mode: 0644
+

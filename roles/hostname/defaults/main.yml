@@ -1,0 +1,2 @@
+---
+new_hostname:  "{{ inventory_hostname_short }}"
