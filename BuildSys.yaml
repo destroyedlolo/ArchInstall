@@ -10,3 +10,4 @@
     - name: timezone
     - name: locale
     - name: buildsys_complements
+    - name: environment

@@ -4,7 +4,7 @@
 x86:
   hosts:
     poc:
-      ansible_host: 192.168.0.30
+      ansible_host: 192.168.0.36
       ansible_user: ansible
 
 ######

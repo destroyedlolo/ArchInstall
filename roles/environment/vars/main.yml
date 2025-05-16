@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for roles/environment
+
+# Caution, Ansible is not smart enough to do replace or create
+# if options changes, corresponding files need to be manually cleaned up
+
+envvars:
+ - ["EDITOR", "vim"]
+ - ["VISUAL", "vim"]
+
+aliases:
+ - ["ls", "ls --color=auto"]
+ - ["grep", "grep --color=auto"]
+ - ["h", "history | grep"]
+ - ["vi", "vim"]
+ - ["ftree", "tree -pfughi"]

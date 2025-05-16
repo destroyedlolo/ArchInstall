@@ -1,0 +1,20 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/environment
+
+- name: Create environment variables
+  ansible.builtin.lineinfile:
+    path: "/etc/environment"
+    regexp: "^{{ item[0] }}=.*$"
+    line: "{{ item[0] }}={{ item[1] }}"
+    create: yes
+  loop: "{{ envvars }}"
+
+- name: Create aliases
+  ansible.builtin.lineinfile:
+    path: "/etc/profile.d/aliases.sh"
+    regexp: '^{{ item[0] | regex_escape() }}=.*'
+    line: 'alias {{ item[0] }}="{{ item[1] }}"'
+    state: present
+    create: yes
+  loop: "{{ aliases }}"
