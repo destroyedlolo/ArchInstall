@@ -1,0 +1,22 @@
+---
+
+- name: Clone yay
+  git:
+    repo: https://aur.archlinux.org/yay-bin.git
+    dest: "/tmp/yay"
+    update: true
+
+- name: change ownership
+  command: chmod -R a+rws /tmp/yay
+
+- name: build yay
+  shell: runuser -u nobody -- makepkg -sf --noconfirm
+  args:
+    chdir: /tmp/yay
+    executable: /bin/bash
+
+- name: install it
+  shell: pacman --noconfirm -U $( ls yay*.tar.zst | grep -v debug )
+  args:
+    chdir: /tmp/yay
+    executable: /bin/bash
