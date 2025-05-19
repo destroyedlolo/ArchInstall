@@ -9,6 +9,7 @@
     - name: hostname
     - name: timezone
     - name: locale
+    - name: reflector
     - name: buildsys_complements
     - name: environment
     - name: yay

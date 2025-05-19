@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/reflector
+
+- name: check if reflector is already installed
+  ansible.builtin.stat:
+    path: /usr/bin/reflector
+  register: reflector
+
+- name: install reflector
+  ansible.builtin.package:
+    name: "reflector"
+    state: present
+  when: not reflector.stat.exists
+
+- name: configure reflector
+  command: reflector --country "{{Country}}" --age 24 --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
