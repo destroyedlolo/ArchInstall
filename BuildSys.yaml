@@ -14,3 +14,4 @@
     - name: environment
     - name: avahi
     - name: yay
+    - name: deployer
