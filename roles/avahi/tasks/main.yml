@@ -1,0 +1,33 @@
+---
+
+- name: Install avahi
+  ansible.builtin.package:
+    name: "avahi"
+    state: present
+
+- name: Install nss-mdns
+  ansible.builtin.package:
+    name: "nss-mdns"
+    state: present
+
+- name: configure nsswitch
+  ansible.builtin.lineinfile:
+    path: "/etc/nsswitch.conf"
+    regexp: "^hosts:.*$"
+    line: "hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns"
+    backrefs: yes
+
+- name: copy services
+  shell: cp /usr/share/doc/avahi/*.service /etc/avahi/services/
+
+- name: enable and start avahi
+  ansible.builtin.systemd_service:
+    name: "avahi-daemon.service"
+    state: started
+    enabled: true
+
+- name: disable systemd-resolved
+  ansible.builtin.systemd_service:
+    name: "systemd-resolved"
+    state: stopped
+    enabled: false

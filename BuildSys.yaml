@@ -12,4 +12,5 @@
     - name: reflector
     - name: buildsys_complements
     - name: environment
+    - name: avahi
     - name: yay
