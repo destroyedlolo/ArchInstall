@@ -15,3 +15,10 @@
 
 - name: configure reflector
   command: reflector --country "{{Country}}" --age 24 --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+- name: enable and start reflector
+  ansible.builtin.systemd_service:
+    name: reflector
+    state: started
+    enabled: true
+
