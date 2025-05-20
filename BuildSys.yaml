@@ -5,14 +5,15 @@
     ansible_user: root
 
   roles:
-    - name: Update_pacman	# Yay is not yet installed
-    - name: hostname
-    - name: timezone
-    - name: locale
-    - name: reflector
-    - name: buildsys_complements
-    - name: environment
-    - name: avahi
-    - name: yay
-    - name: deployer
-    - name: users
+    - name: Update_pacman	# Update packages repository, Yay is not yet installed
+    - name: hostname      # set the hostname
+    - name: timezone      # set our timezone
+    - name: locale        # set our locales
+    - name: reflector     # speedup next deployment
+    - name: buildsys_complements  # install additional packages
+    - name: environment   # setup environment variables / alias
+    - name: avahi         # Install and enable avahi
+    - name: yay           # install yay
+    - name: deployer      # install ansible user
+    - name: users         # create additional users
+    - name: disableRoot   # Disable root login
