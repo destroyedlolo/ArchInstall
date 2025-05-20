@@ -81,7 +81,8 @@ and, temporarily, enable root login. In file **/etc/ssh/sshd_config**, uncomment
 
 It's the time to finalize environment specifics, like enabling ZRam.
 
-> [!NOTE]  
+> [!NOTE]
+> ![image](images/level.png)
 > Now you've got a minimal running system, which is able to boot autonomously.
 
 ***
