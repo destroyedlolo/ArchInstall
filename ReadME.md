@@ -1,7 +1,7 @@
 This playbook aims to fully install ArchLinux on a fresh machine.
 
 - [Step 0](#step-0---minimal-bootable-system) : Minimal bootable system with installation ISO
-- [Step 1](#step-1--build-core-system)
+- [Step 1](#step-1--build-core-system) : Build core system
 
 # Step 0 - Minimal bootable system
 
@@ -28,16 +28,11 @@ You need at least :
 
 `fdisk /dev/sda`
 
-##### formating
+##### formating and mounting
 
 ```
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
-```
-
-##### Mounting
-
-```
 mount /dev/sda2 /mnt
 mount --mkdir /dev/sda1 /mnt/boot
 ```
@@ -51,7 +46,6 @@ pacstrap -K /mnt base linux linux-firmware networkmanager vim e2fsprogs sudo ope
 > [!TIP]
 > Add platform specifics : typically **intel-ucode** for an intel CPU.
 
-## chroot
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
@@ -87,4 +81,28 @@ and, temporarily, enable root login. In file **/etc/ssh/sshd_config**, uncomment
 
 It's the time to finalize environment specifics, like enabling ZRam.
 
+***
+
 # Step 1 : Build core system
+
+On the node manager (the machine running Ansible), you may have to have **ansible** and **python-passlib** installed (`pacman -S ansible python-passlib`)
+
+In order to ensure Ansible doesn't need a remote root password, we will associate a key between our current account and the remote's root.
+```
+ssh-keygen -t rsa
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.0.30
+```
+Where **192.168.0.30** has to be changed as per the IP address of the new system. Then populate `hosts.yaml` file.
+
+##### Configuration
+
+- [hostname](roles/hostname)
+- [timezone](roles/timezone)
+- [locale](roles/locale)
+- [reflector](roles/reflector)
+- [buildsys_complements](roles/buildsys_complements)
+- [environment](roles/environment)
+- [deployer](roles/deployer)
+- [users](roles/users)
+
+More information in `buildSys.yaml` playbook.
