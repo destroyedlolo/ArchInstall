@@ -5,7 +5,7 @@ x86:
   hosts:
     poc:
       ansible_host: 192.168.0.34
-      ansible_user: ansible
+      ansible_user: deployer
 
 ######
 # Stages

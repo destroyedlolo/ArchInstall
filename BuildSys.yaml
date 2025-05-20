@@ -15,3 +15,4 @@
     - name: avahi
     - name: yay
     - name: deployer
+    - name: users

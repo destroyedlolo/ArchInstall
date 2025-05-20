@@ -1,0 +1,39 @@
+---
+
+- name: create remote promoted users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    create_home: true
+    shell: /bin/bash
+    groups: wheel
+    comment: "resetPW"
+    append: true
+    password: "{{ item | password_hash('sha512') }}"
+    update_password: on_create
+  loop: "{{ wheel_users }}"
+
+- name: create remote users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    comment: "resetPW"
+    create_home: true
+    shell: /bin/bash
+    password: "{{ item | password_hash('sha512') }}"
+    update_password: on_create
+  loop: "{{ users }}"
+
+- name: add sudo right
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers.d/wheel"
+    line: "%wheel ALL=(ALL:ALL) ALL"
+    state: present
+    create: yes
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: mark new account to be password reset
+  shell: for n in $( awk -F':' '/:resetPW:/ { print $1 }' /etc/passwd ); do chage -d 0 $n; done
+  args:
+    executable: /bin/bash
+
+- name: clean renew tag
+  command: sed -i 's/:resetPW:/::/g' /etc/passwd
