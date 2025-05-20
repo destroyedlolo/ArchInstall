@@ -115,6 +115,8 @@ More information in `buildSys.yaml` playbook.
 ```
 ansible-playbook BuildSys.yaml
 ```
+> [!IMPORTANT]
+> After this playbook is completed successfully, remote root login is disabled. Consequently, this playbook is not idempotent.
 
 > ![image](images/level.png)
 > Now you've got a basic installed system, configured, Ansible capable, with **root** account disabled and your user account configuration and sudo capable.
