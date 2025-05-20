@@ -81,7 +81,6 @@ and, temporarily, enable root login. In file **/etc/ssh/sshd_config**, uncomment
 
 It's the time to finalize environment specifics, like enabling ZRam.
 
-> [!NOTE]
 > ![image](images/level.png)
 > Now you've got a minimal running system, which is able to boot autonomously.
 
@@ -111,5 +110,5 @@ Where **192.168.0.30** has to be changed as per the IP address of the new system
 
 More information in `buildSys.yaml` playbook.
 
-> [!NOTE]  
+> ![image](images/level.png)
 > Now you've got a basic installed system, configured, Ansible capable, with **root** account disabled and your user account configuration and sudo capable.
