@@ -110,5 +110,11 @@ Where **192.168.0.30** has to be changed as per the IP address of the new system
 
 More information in `buildSys.yaml` playbook.
 
+##### Run the playbook
+
+```
+ansible-playbook BuildSys.yaml
+```
+
 > ![image](images/level.png)
 > Now you've got a basic installed system, configured, Ansible capable, with **root** account disabled and your user account configuration and sudo capable.
