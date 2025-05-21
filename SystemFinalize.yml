@@ -1,0 +1,5 @@
+- name: Finalize system installation
+  hosts: finalizeSys
+
+  roles:
+    - name: packages_install  # update installed packages
