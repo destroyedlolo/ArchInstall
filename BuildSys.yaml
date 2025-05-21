@@ -3,17 +3,19 @@
   vars:
     # As the dedicated user doesn't exist yet, we need to use root
     ansible_user: root
+    ansible_roles_path:
+      - ./buildSys
 
   roles:
-    - name: Update_pacman	# Update packages repository, Yay is not yet installed
-    - name: hostname      # set the hostname
-    - name: timezone      # set our timezone
-    - name: locale        # set our locales
-    - name: reflector     # speedup next deployment
-    - name: buildsys_complements  # install additional packages
-    - name: environment   # setup environment variables / alias
-    - name: avahi         # Install and enable avahi
-    - name: yay           # install yay
-    - name: deployer      # install ansible user
-    - name: users         # create additional users
-    - name: disableRoot   # Disable root login
+    - name: buildSys.Update_pacman	# Update packages repository, Yay is not yet installed
+    - name: buildSys.hostname      # set the hostname
+    - name: buildSys.timezone      # set our timezone
+    - name: buildSys.locale        # set our locales
+    - name: buildSys.reflector     # speedup next deployment
+    - name: buildSys.buildsys_complements  # install additional packages
+    - name: buildSys.environment   # setup environment variables / alias
+    - name: buildSys.avahi         # Install and enable avahi
+    - name: buildSys.yay           # install yay
+    - name: buildSys.deployer      # install ansible user
+    - name: buildSys.users         # create additional users
+    - name: buildSys.disableRoot   # Disable root login

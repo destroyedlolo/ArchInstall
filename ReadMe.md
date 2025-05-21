@@ -99,14 +99,14 @@ Where **192.168.0.30** has to be changed as per the IP address of the new system
 
 ##### Configuration
 
-- [hostname](roles/hostname)
-- [timezone](roles/timezone)
-- [locale](roles/locale)
-- [reflector](roles/reflector)
-- [buildsys_complements](roles/buildsys_complements)
-- [environment](roles/environment)
-- [deployer](roles/deployer)
-- [users](roles/users)
+- [hostname](roles/buildSys.hostname)
+- [timezone](roles/buildSys.timezone)
+- [locale](roles/buildSys.locale)
+- [reflector](roles/buildSys.reflector)
+- [buildsys_complements](roles/buildSys.buildsys_complements)
+- [environment](roles/buildSys.environment)
+- [deployer](roles/buildSys.deployer)
+- [users](roles/buildSys.users)
 
 More information in `buildSys.yaml` playbook.
 
