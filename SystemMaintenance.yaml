@@ -2,4 +2,5 @@
   hosts: maintainSys
 
   roles:
-    - name: packages_update # update installed packages
+    - name: clean_repository  # Clean pacman repo but previous version
+    - name: packages_update   # update installed packages
