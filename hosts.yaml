@@ -11,7 +11,17 @@ x86:
 # Stages
 ######
 
-# Build core systems
+# Build core systems (one shot)
 buildSys:
+  hosts:
+    poc
+
+# Everything needed for system maintenance (idempotent)
+finalizeSys:
+  hosts:
+    poc
+
+# Recurent system maintenance (backup excluded)
+maintainSys:
   hosts:
     poc

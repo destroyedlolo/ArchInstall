@@ -1,0 +1,5 @@
+- name: Maintain the system
+  hosts: maintainSys
+
+  roles:
+    - name: packages_update # update installed packages

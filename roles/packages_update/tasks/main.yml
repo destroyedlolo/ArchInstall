@@ -1,0 +1,4 @@
+- name: Upgrade caches and packages themselves
+  yay:
+    update_cache: yes
+    upgrade: yes
