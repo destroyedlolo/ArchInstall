@@ -1,7 +1,18 @@
 This playbook aims to fully install ArchLinux on a fresh machine.
 
+Fill **hosts.yml** with :
+- the list of each hosts, obviously. It's suggested to classify them in groups corresponding to their architecture (`x86`, `arm`) that will make easier the segregation between deployment methods if needed.
+
+Build a generic system
+----
+
 - [Step 0](#step-0---minimal-bootable-system) : Minimal bootable system with installation ISO
-- [Step 1](#step-1--build-core-system) : Build core system
+- [Step 1](#step-1--build-core-system) (`buildSys`): Build core system
+
+ Customize the system as per your needs
+ ----
+ - [Step 2](#step-2--finalize-the-system-installation) (`finalizeSys`) : the place to put the special tools you're needing (monitoring, ...)
+ - [my owns](#) (`Laurent`) : my own ones
 
 # Step 0 - Minimal bootable system
 
@@ -120,3 +131,7 @@ ansible-playbook BuildSys.yaml
 
 > ![image](images/level.png)
 > Now you've got a basic installed system, configured, Ansible capable, with **root** account disabled and your user account configuration and sudo capable.
+
+# Step 2 : Finalize the system installation
+
+This step will customize the environment as per your own needs.
