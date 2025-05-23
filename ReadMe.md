@@ -12,7 +12,6 @@ Build a generic system
  Customize the system as per your needs
  ----
  - [Step 2](#step-2--finalize-the-system-installation) (`finalizeSys`) : the place to put the special tools you're needing (monitoring, ...)
- - [my owns](#) (`Laurent`) : my own ones
 
 # Step 0 - Minimal bootable system
 

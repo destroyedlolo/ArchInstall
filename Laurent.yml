@@ -1,8 +1,0 @@
----
-
-- name: Finalize my own environments
-  hosts: Laurent
-
-  roles:
-    - name: Laurent.packages_install  # update installed packages
-
