@@ -11,7 +11,7 @@ Build a generic system
 
  Customize the system as per your needs
  ----
- - [Step 2](#step-2--finalize-the-system-installation) (`finalizeSys`) : the place to put the special tools you're needing (monitoring, ...)
+ - [Step 2](#hostname](roles/buildSys.hostname)) (`finalizeSys`) : the place to put the special tools you're needing that are not part of the core ones.
 
 # Step 0 - Minimal bootable system
 
@@ -134,3 +134,11 @@ ansible-playbook BuildSys.yaml
 # Step 2 : Finalize the system installation
 
 This step will customize the environment as per your own needs.
+
+##### Configuration
+
+- [packages_install](roles/packages_install)
+
+For my owns curstom ones. Not packaged (yet), but useful.
+
+- [Laurent.PubSysFigures](roles/Laurent.PubSysFigures) Publish to MQTT some system's figures [PubSysFigures](https://github.com/destroyedlolo/PubSysFigures)
