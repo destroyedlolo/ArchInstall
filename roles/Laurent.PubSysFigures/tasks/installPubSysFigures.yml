@@ -1,0 +1,25 @@
+---
+
+- name: Clone the repository
+  git:
+    repo: https://github.com/destroyedlolo/PubSysFigures.git
+    dest: "/tmp/PubSysFigures"
+    update: true
+
+- name: building
+  command: gcc -O2 PubSysFigures.c -lpaho-mqtt3c -o PubSysFigures
+  args:
+    chdir: /tmp/PubSysFigures
+
+- name: install it
+  become: yes
+  command: cp PubSysFigures /usr/local/sbin
+  args:
+    chdir: /tmp/PubSysFigures
+
+- name: cleaning
+  file:
+    path: /tmp/PubSysFigures
+    state: absent
+
+

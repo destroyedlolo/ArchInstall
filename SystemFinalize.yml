@@ -2,7 +2,8 @@
   hosts: finalizeSys
 
   roles:
-    - name: packages_install  # update installed packages
-    - role: Laurent.LFMakeMaker
+    - name: packages_install    # update installed packages
+    - role: Laurent.LFMakeMaker # Make helper
       when: "'Laurent' in group_names"
-
+    - role: Laurent.PubSysFigures
+      when: "'Laurent' in group_names"

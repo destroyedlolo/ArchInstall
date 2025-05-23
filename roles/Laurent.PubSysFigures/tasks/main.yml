@@ -1,0 +1,59 @@
+---
+
+- name: check if PubSysFigures is already installed
+  ansible.builtin.stat:
+    path: /usr/local/sbin/PubSysFigures
+  register: PubSysFigures
+ 
+- name: Install it if not
+  ansible.builtin.include_tasks: installPubSysFigures.yml
+  when: not PubSysFigures.stat.exists
+
+- name: create dedicated user
+  become: yes
+  user:
+    name: PubSysFigures
+    system: yes
+    shell: /usr/sbin/nologin
+    create_home: no
+
+
+- name: check if the service exists
+  become: yes
+  ansible.builtin.stat:
+    path: /etc/systemd/system/PubSysFigures.service
+  register: PubSysFiguresSRV
+ 
+- name: create the service file
+  become: yes
+  copy:
+    dest: /etc/systemd/system/PubSysFigures.service
+    mode: '0644'
+    content: |
+      [Unit]
+      Description=Publish system figures to MQTT
+      After=network.target
+      
+      [Service]
+      Type=simple
+      User=PubSysFigures
+      Group=PubSysFigures
+      ExecStart=/usr/local/sbin/PubSysFigures -H{{ brokerhost }} -s30 -g120
+      Restart=on-failure
+
+      [Install]
+      WantedBy=multi-user.target
+  when: not PubSysFiguresSRV.stat.exists
+
+- name: reload systemd
+  become: yes
+  systemd:
+    daemon_reload: yes
+  when: not PubSysFiguresSRV.stat.exists
+
+- name: activate the service
+  become: yes
+  systemd:
+    name: PubSysFigures
+    enabled: yes
+    state: started
