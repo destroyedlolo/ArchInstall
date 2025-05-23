@@ -3,3 +3,6 @@
 
   roles:
     - name: packages_install  # update installed packages
+    - role: Laurent.LFMakeMaker
+      when: "'Laurent' in group_names"
+

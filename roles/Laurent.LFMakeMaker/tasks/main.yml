@@ -1,0 +1,10 @@
+---
+
+- name: check if LFMakeMaker is already installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/LFMakeMaker
+  register: LFMakeMaker
+ 
+- name: Install it if not
+  ansible.builtin.include_tasks: installLFMakeMaker.yml
+  when: not LFMakeMaker.stat.exists

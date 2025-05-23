@@ -1,0 +1,23 @@
+---
+
+- name: Clone the repository
+  git:
+    repo: https://github.com/destroyedlolo/LFMakeMaker.git
+    dest: "/tmp/LFMakeMaker"
+    update: true
+
+- name: building
+  command: gcc -O2 LFMakeMaker.c -o LFMakeMaker
+  args:
+    chdir: /tmp/LFMakeMaker
+
+- name: install it
+  become: yes
+  command: cp LFMakeMaker /usr/local/bin
+  args:
+    chdir: /tmp/LFMakeMaker
+
+- name: cleaning
+  file:
+    path: /tmp/LFMakeMaker
+    state: absent

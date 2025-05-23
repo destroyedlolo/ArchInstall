@@ -1,5 +1,6 @@
 Additional_packages:
   - pacman-contrib
+  - screen
   - paho-mqtt-c
   - lua
   - luarocks
