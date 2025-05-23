@@ -1,2 +1,9 @@
 Additional_packages:
   - pacman-contrib
+  - paho-mqtt-c
+  - lua
+  - luarocks
+
+# Rocks to install
+LuaRocks:
+  - LuaFileSystem
