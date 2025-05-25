@@ -1,0 +1,6 @@
+---
+
+- name: install OWFS
+  yay:
+    name: owfs
+    state: present
