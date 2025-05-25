@@ -4,8 +4,12 @@
 x86:
   hosts:
     poc:
-      ansible_host: 192.168.0.34
+      ansible_host: 192.168.0.28
       ansible_user: deployer
+
+# ARM SBCs
+arm: 
+  hosts: {}
 
 ######
 # Stages
@@ -26,8 +30,12 @@ maintainSys:
   hosts:
     poc
 
-# Need you very own tools
-Laurent:
+# Need my very own tools
+destroyedlolo:
   hosts:
     poc
 
+# Install smart homing tools
+Domestik:
+  hosts:
+    poc

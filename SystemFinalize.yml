@@ -3,7 +3,7 @@
 
   roles:
     - name: packages_install    # update installed packages
-    - role: Laurent.LFMakeMaker # Make helper
-      when: "'Laurent' in group_names"
-    - role: Laurent.PubSysFigures
-      when: "'Laurent' in group_names"
+    - role: destroyedlolo.LFMakeMaker # Make helper
+      when: "'destroyedlolo' in group_names or 'Domestik' in group_names"
+    - role: destroyedlolo.PubSysFigures
+      when: "'destroyedlolo' in group_names"
