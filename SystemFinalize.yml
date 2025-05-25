@@ -4,6 +4,6 @@
   roles:
     - name: packages_install    # update installed packages
     - role: destroyedlolo.LFMakeMaker # Make helper
-      when: "'destroyedlolo' in group_names or 'Domestik' in group_names"
+      when: "'destroyedlolo' in group_names or 'SmartHome' in group_names"
     - role: destroyedlolo.PubSysFigures
       when: "'destroyedlolo' in group_names"
