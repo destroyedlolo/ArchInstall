@@ -3,6 +3,10 @@ This playbook aims to fully install ArchLinux on a fresh machine.
 Fill **hosts.yml** with :
 - the list of each hosts, obviously. It's suggested to classify them in groups corresponding to their architecture (`x86`, `arm`) that will make easier the segregation between deployment methods if needed.
 
+Fill **group_vars/all.yml** with variables available to all playbooks. Especially:
+- **interactive_user** Name of the user you will use to log in to the machine.
+This user is a *privileged* one, and is part of application groups and can sudo.
+
 Build a generic system
 ----
 
