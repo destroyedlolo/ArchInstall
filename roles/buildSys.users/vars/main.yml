@@ -1,5 +1,5 @@
 wheel_users:
-  - laurent
+  - "{{ interactive_user }}"
  
-users: 
-  - test
+users: []
+#  - test
