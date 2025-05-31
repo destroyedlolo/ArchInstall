@@ -14,7 +14,7 @@
   ansible.builtin.lineinfile:
     path: "/etc/nsswitch.conf"
     regexp: "^hosts:.*$"
-    line: "hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns"
+    line: "hosts: mymachines mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns"
     backrefs: yes
 
 - name: copy services
