@@ -4,3 +4,73 @@
   yay:
     name: owfs
     state: present
+
+- name: create mount point
+  become: yes
+  ansible.builtin.file:
+    path: "{{Mount_Point}}"
+    state: directory
+    owner: ow
+    group: ow
+    mode: '0750'
+
+  
+- name: create configuration file to expose remote server
+  become: yes
+  ansible.builtin.copy: 
+    dest: /etc/owfs.conf
+    content: |
+      server= {{Remote_Server}}
+      mountpoint = {{Mount_Point}}
+      allow_other
+    owner: root
+    group: root
+    mode: '0644'
+  when: "'Simulation' in group_names"
+
+#need both /etc/owfs.conf and /etc/owserver.conf
+- name: create configuration file to expose local bus
+  ansible.builtin.fail:
+    msg: "TO BE DONE !"
+  when: "'Simulation' not in group_names"
+
+- name: modify start service
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /usr/lib/systemd/system/owfs.service
+    regexp: '^ExecStart=.*'
+    line: 'ExecStart=/usr/bin/owfs -c /etc/owfs.conf'
+    backup: yes
+
+- name: modify stop service
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /usr/lib/systemd/system/owfs.service
+    regexp: '^ExecStop=.*'
+    line: 'ExecStop=/usr/bin/umount {{Mount_Point}}'
+    backup: yes
+
+- name: reload systemd
+  become: yes
+  systemd:
+    daemon_reload: yes
+
+- name: refresh systemd
+  become: yes
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: activate owserver
+  become: yes
+  systemd:
+    name: owserver
+    enabled: yes
+    state: started
+  when: "'Simulation' not in group_names"
+
+- name: activate owfs
+  become: yes
+  systemd:
+    name: owfs
+    enabled: yes
+    state: started

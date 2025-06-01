@@ -4,7 +4,7 @@
 x86:
   hosts:
     poc:
-      ansible_host: 192.168.0.28
+      ansible_host: 192.168.0.34
       ansible_user: deployer
 
 # ARM SBCs
@@ -37,5 +37,10 @@ destroyedlolo:
 
 # Install smart homing tools
 SmartHome:
+  hosts:
+    poc
+
+# Simulation only (1.e mount owfs from another machine)
+Simulation:
   hosts:
     poc

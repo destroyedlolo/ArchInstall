@@ -1,0 +1,6 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for roles/owfs
+
+Remote_Server: bpi.chez.moi:4304
+Mount_Point: /var/lib/owfs/mnt
