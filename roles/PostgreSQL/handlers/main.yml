@@ -1,0 +1,10 @@
+---
+
+- name: Reload systemd
+  command: systemctl daemon-reload
+
+- name: Restart PostgreSQL
+  become: true
+  systemd:
+    name: postgresql
+    state: restarted

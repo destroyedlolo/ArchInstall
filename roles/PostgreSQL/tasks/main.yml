@@ -1,0 +1,70 @@
+---
+
+- name: install postgresql
+  yay:
+    name: postgresql
+    state: present
+    update_cache: true
+
+- name: determine psql version
+  shell: "psql --version | sed -n 's/^[^0-9]*\\([0-9]\\+\\).*/\\1/p'"
+  register: pg_version
+  changed_when: false
+
+- name: build target directory dynamically
+  set_fact:
+    postgresql_pgdata: "{{ postgresql_pgdata }}/{{ pg_version.stdout }}/data"
+
+- name: Postgresql database directory
+  debug:
+    msg: "PostgreSQL data dir : {{ postgresql_pgdata }}"
+
+
+- name: init data directory if needed
+  become_user: postgres
+  become: true
+  shell: "initdb -D {{ postgresql_pgdata }}"
+  args:
+    creates: "{{ postgresql_pgdata }}/PG_VERSION"
+
+- name: create postgresql's service overloading directory
+  become: true
+  file:
+    path: /etc/systemd/system/postgresql.service.d
+    state: directory
+    mode: '0755'  
+  
+- name: set PGDATA
+  become: true
+  copy:
+    dest: /etc/systemd/system/postgresql.service.d/override.conf
+    content: |
+      [Service]
+      Environment=PGDATA={{ postgresql_pgdata }}
+  notify: Reload systemd
+
+- name: Enable and start PostgreSQL service
+  become: true
+  systemd:
+    name: postgresql
+    enabled: true
+    state: started
+
+- name: allow connection from local network
+  become: true
+  lineinfile:
+    path: "{{ postgresql_pgdata }}/pg_hba.conf"
+    line: "host all  all  192.168.0.0/24  trust"
+    insertafter: EOF
+    state: present
+  notify: Restart PostgreSQL
+
+- name: listen on all interfaces
+  become: true
+  lineinfile:
+    path: "{{ postgresql_pgdata }}/postgresql.conf"
+    regexp: '^#?listen_addresses\s*='
+    line: "listen_addresses = '*'"
+    state: present
+  notify: Restart PostgreSQL
+
