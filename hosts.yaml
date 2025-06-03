@@ -1,46 +1,51 @@
 # Hosts definition
 
-# x86 POC/Crash machines
-x86:
-  hosts:
-    poc:
-      ansible_host: 192.168.0.34
-      ansible_user: deployer
+all:
+  vars:
+    ansible_remote_tmp: /tmp/ansible
 
-# ARM SBCs
-arm: 
-  hosts: {}
+  children:
+    # x86 POC/Crash machines
+    x86:
+      hosts:
+        poc:
+          ansible_host: 192.168.0.38
+          ansible_user: deployer
+
+    # ARM SBCs
+    arm: 
+      hosts: {}
 
 ######
 # Stages
 ######
 
-# Build core systems (one shot)
-buildSys:
-  hosts:
-    poc
+    # Build core systems (one shot)
+    buildSys:
+      hosts:
+        poc
 
-# Everything needed for system maintenance (idempotent)
-finalizeSys:
-  hosts:
-    poc
+    # Everything needed for system maintenance (idempotent)
+    finalizeSys:
+      hosts:
+        poc
 
-# Recurent system maintenance (backup excluded)
-maintainSys:
-  hosts:
-    poc
+    # Recurent system maintenance (backup excluded)
+    maintainSys:
+      hosts:
+        poc
 
-# Need my very own tools
-destroyedlolo:
-  hosts:
-    poc
+    # Need my very own tools
+    destroyedlolo:
+      hosts:
+        poc
 
-# Install smart homing tools
-SmartHome:
-  hosts:
-    poc
+    # Install smart homing tools
+    SmartHome:
+      hosts:
+        poc
 
-# Simulation only (1.e mount owfs from another machine)
-Simulation:
-  hosts:
-    poc
+    # Simulation only (1.e mount owfs from another machine)
+    Simulation:
+      hosts:
+        poc

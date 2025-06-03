@@ -1,5 +1,14 @@
 - name: Install smart home automation tools
   hosts: SmartHome
 
+  pre_tasks:
+    - name: Correct temporary directory rights
+      become: true
+      file:
+        path: "{{ ansible_remote_tmp }}"
+        state: directory
+        mode: '1777'
+
   roles:
     - name: SmartHome.owfs
+    - name: PostgreSQL
