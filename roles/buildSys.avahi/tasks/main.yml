@@ -17,6 +17,22 @@
     line: "hosts: mymachines mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns"
     backrefs: yes
 
+- name: disable ipv6 advertising to avoid name's enumeration
+  lineinfile:
+    path: '/etc/avahi/avahi-daemon.conf'
+    regexp: '^\s*#?\s*publish-a-on-ipv6='
+    line: 'publish-a-on-ipv6=no'
+    insertafter: '^\[server\]'
+    create: no
+
+- name: disable ipv6 at all
+  lineinfile:
+    path: '/etc/avahi/avahi-daemon.conf'
+    regexp: '^\s*#?\s*use-ipv6='
+    line: 'use-ipv6=no'
+    insertafter: '^\[publish\]'
+    create: no
+    
 - name: copy services
   shell: cp /usr/share/doc/avahi/*.service /etc/avahi/services/
 
