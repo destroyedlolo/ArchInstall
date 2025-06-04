@@ -7,7 +7,7 @@ require deep changes in the provided systemd service and lead to problems*).
 - **postgresql_listen_addresses** = which ip to listen to (`localhost` (default), `*` all, what you want)
 - **postgresql_port** = Postgresql server's port
 > [!WARNING]
-> Ansible is not smart enought to handle port change.
+> Ansible is not smart enough to handle port change.
 > To change the port :
 > - disable the port, run the playbook
 > - apply the new setting

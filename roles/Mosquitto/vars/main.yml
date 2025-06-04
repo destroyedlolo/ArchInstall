@@ -1,0 +1,3 @@
+#the value doesn't matter, as long as this variable is present
+allow_anonymous: yes
+listener: 1883

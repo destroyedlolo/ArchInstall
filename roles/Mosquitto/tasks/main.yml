@@ -1,0 +1,49 @@
+- name: install Mosquitto
+  yay:
+    name: mosquitto
+    state: present
+    update_cache: true
+
+- name: Enable and start Mosquitto service
+  become: true
+  systemd:
+    name: mosquitto
+    enabled: true
+    state: started
+
+- name: Update anonymous
+  become: true
+  lineinfile:
+    path: "/etc/mosquitto/mosquitto.conf"
+    line: "allow_anonymous true"
+    state: present
+  notify: Restart Mosquitto
+  when: allow_anonymous is defined
+
+- name: remove anonymous
+  become: true
+  lineinfile:
+    path: "/etc/mosquitto/mosquitto.conf"
+    regexp: '^allow_an'
+    state: absent
+  notify: Restart Mosquitto
+  when: allow_anonymous is not defined
+
+- name: allow remote connection
+  become: true
+  lineinfile:
+    path: "/etc/mosquitto/mosquitto.conf"
+    line: "listener {{ listener }}"
+    state: present
+  notify: Restart Mosquitto
+  when: listener is defined
+
+- name: remove remote connection
+  become: true
+  lineinfile:
+    path: "/etc/mosquitto/mosquitto.conf"
+    regexp: '^listener'
+    state: absent
+  notify: Restart PostgreSQL
+  when: listener is not defined
+
