@@ -29,17 +29,27 @@
   become: true
   lineinfile:
     path: "{{ postgresql_pgdata }}/pg_hba.conf"
-    line: "host all  all  192.168.0.0/24  trust"
+    line: "host all  all  {{ postgresql_allowed_network }}  trust"
     insertafter: EOF
     state: present
   notify: Restart PostgreSQL
+  when: postgresql_allowed_network is defined
 
-- name: listen on all interfaces
+- name: remove rights if no network defined
+  become: true
+  lineinfile:
+    path: "{{ postgresql_pgdata }}/pg_hba.conf"
+    regexp: '^host.*/24.*trust'
+    state: absent
+  notify: Restart PostgreSQL
+  when: postgresql_allowed_network is not defined
+
+- name: listen on all provided interfaces
   become: true
   lineinfile:
     path: "{{ postgresql_pgdata }}/postgresql.conf"
     regexp: '^#?listen_addresses\s*='
-    line: "listen_addresses = '*'"
+    line: "listen_addresses = '{{ postgresql_listen_addresses }}'"
     state: present
   notify: Restart PostgreSQL
 
