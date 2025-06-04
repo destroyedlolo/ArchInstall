@@ -141,8 +141,21 @@ This step will customize the environment as per your own needs.
 
 ##### Configuration
 
+> [!NOTE]
+> Some of the packages hereafter are not included by default on the SystemFinalize playbook : **you need to customize it**.
+
 - [packages_install](roles/packages_install)
+- [PostgreSQL](roles/PostgreSQL)
 
 For my owns curstom ones. Not packaged (yet), but useful.
 
 - [Laurent.PubSysFigures](roles/Laurent.PubSysFigures) Publish to MQTT some system's figures [PubSysFigures](https://github.com/destroyedlolo/PubSysFigures)
+
+##### Run the playbook
+
+```
+ansible-playbook SystemFinalize.yaml
+```
+
+> ![image](images/level.png)
+> Now you've got a fully (as per your very own needs) installed system.
