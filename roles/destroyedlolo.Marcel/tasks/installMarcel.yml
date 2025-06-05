@@ -19,3 +19,12 @@
     replace: '\1'
   loop: '{{ Marcel_modules }}'
 
+- name: rebuild the Makefile
+  command: sh remake.sh
+  args:
+    chdir: /tmp/Marcel
+
+- name: Compile Marcel
+  command: make -j
+  args:
+    chdir: /tmp/Marcel
