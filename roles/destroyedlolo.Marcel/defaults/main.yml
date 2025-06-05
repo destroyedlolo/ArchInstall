@@ -1,0 +1,18 @@
+---
+
+# Marcel's modules to activate
+Marcel_modules:
+  - LUA
+  - EVERY
+  - UPS
+  - OUTFILE
+  - ONOFF
+  - DPD
+  - SHT31
+  - 1WIRE
+  - ALERT
+  - INOTIFY
+  - METEOOWM
+  - RFXTRX
+
+# - DUMMY

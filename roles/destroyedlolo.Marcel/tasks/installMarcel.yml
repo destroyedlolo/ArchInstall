@@ -1,0 +1,21 @@
+---
+
+- name: Clone the repository
+  git:
+    repo: https://github.com/destroyedlolo/Marcel.git
+    dest: "/tmp/Marcel"
+    force: true
+
+- name: comments out all options
+  replace:
+    path: "/tmp/Marcel/remake.sh"
+    regexp: '^(\s*BUILD_.*)$'
+    replace: '# \1'
+
+- name: activate requested ones
+  replace:
+    path: "/tmp/Marcel/remake.sh"
+    regexp: '^#\s*(BUILD_{{ item }}.*)$'
+    replace: '\1'
+  loop: '{{ Marcel_modules }}'
+

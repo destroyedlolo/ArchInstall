@@ -12,4 +12,5 @@
   roles:
     - name: SmartHome.owfs
     - name: Mosquitto
+    - name: destroyedlolo.Marcel
     - name: PostgreSQL

@@ -1,0 +1,11 @@
+---
+
+- name: check if Marcel is already installed
+  stat:
+    path: /usr/local/sbin/Marcel
+  register: Marcel
+
+- name: Install it if not
+  include_tasks: installMarcel.yml
+  when: not Marcel.stat.exists
+
