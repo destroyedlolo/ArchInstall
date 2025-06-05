@@ -149,7 +149,7 @@ This step will customize the environment as per your own needs.
 
 For my owns curstom ones. Not packaged (yet), but useful.
 
-- [Laurent.PubSysFigures](roles/Laurent.PubSysFigures) Publish to MQTT some system's figures [PubSysFigures](https://github.com/destroyedlolo/PubSysFigures)
+- [destroyedlolo.PubSysFigures](roles/destroyedlolo.PubSysFigures) Publish to MQTT some system's figures [PubSysFigures](https://github.com/destroyedlolo/PubSysFigures)
 
 ##### Run the playbook
 
