@@ -1,0 +1,13 @@
+---
+
+- name: install additionnal packages
+  yay:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ Additional_packages }}"
+
+- name: Install rocks if needed
+  include_tasks: install_or_update_a_rock.yml
+  loop: "{{ LuaRocks }}"
+  loop_control:
+    label: "{{ item }}"

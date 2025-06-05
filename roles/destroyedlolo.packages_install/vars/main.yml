@@ -1,0 +1,8 @@
+Additional_packages:
+  - paho-mqtt-c
+  - lua
+  - luarocks
+
+# Rocks to install
+LuaRocks:
+  - LuaFileSystem

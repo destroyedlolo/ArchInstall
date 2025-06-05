@@ -3,6 +3,8 @@
 
   roles:
     - name: packages_install    # update installed packages
+    - role: destroyedlolo.packages_install  # Make helper
+      when: "'destroyedlolo' in group_names or 'SmartHome' in group_names"
     - role: destroyedlolo.LFMakeMaker # Make helper
       when: "'destroyedlolo' in group_names or 'SmartHome' in group_names"
     - role: destroyedlolo.PubSysFigures

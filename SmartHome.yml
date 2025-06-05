@@ -10,6 +10,8 @@
         mode: '1777'
 
   roles:
+    - name: destroyedlolo.packages_install
+    - name: destroyedlolo.LFMakeMaker
     - name: SmartHome.owfs
     - name: Mosquitto
     - name: destroyedlolo.Marcel
