@@ -159,3 +159,24 @@ ansible-playbook SystemFinalize.yaml
 
 > ![image](images/level.png)
 > Now you've got a fully (as per your very own needs) installed system.
+
+Smart Home and Automation tools
+---
+
+Following steps are only needed if you want to install my own automation solution.
+
+# Step 3 : Smart home tools
+
+This step installs all tools needed for Automation and/or Smart Homing.
+> [!WARNING]
+> Tools are only installed but not full configured.
+> - First, because each installation has its own needs / processes / automatition
+> - Secondly, because security mechanisms are not supposed to be publicly exposed :wink: and depend also on the installation
+> - last but not least, because some of these security mechanisms depend on *PRO* registered version of my tools.
+
+##### Configuration
+
+- [OWFS](roles/SmartHome.owfs) : Well known 1-wire bus driver
+- [Mosquitto](roles/Mosquitto) : MQTT broker
+- [Marcel](roles/destroyedlolo.Marcel) : Gateway between environmental events and the MQTT bus (and more). See [Marcel repo](https://github.com/destroyedlolo/Marcel)
+- [PostgreSQL](roles/PostgreSQL)
