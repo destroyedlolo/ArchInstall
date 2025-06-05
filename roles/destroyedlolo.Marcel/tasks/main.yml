@@ -9,3 +9,45 @@
   include_tasks: installMarcel.yml
   when: not Marcel.stat.exists
 
+- name: create dédicated user
+  become: yes
+  user:
+    name: Marcel
+    system: yes
+    shell: /usr/sbin/nologin
+    create_home: no
+
+- name: check if the service exists
+#if yes keep it as it is : it may have been modified by the user
+  become: yes
+  ansible.builtin.stat:
+    path: /etc/systemd/system/Marcel.service
+  register: MarcelSRV
+
+- name: create the service file
+  become: yes
+  copy:
+    dest: /etc/systemd/system/Marcel.service
+    mode: '0644'
+    content: |
+      [Unit]
+      Description=publish figures to a MQTT broker
+      After=network.target
+      
+      [Service]
+      Type=simple
+      User=Marcel
+      Group=Marcel
+      ExecStart=/usr/local/sbin/Marcel
+      Restart=on-failure
+
+      [Install]
+      WantedBy=multi-user.target
+  when: not MarcelSRV.stat.exists
+
+- name: reload systemd
+  become: yes
+  systemd:
+    daemon_reload: yes
+  when: not MarcelSRV.stat.exists
+

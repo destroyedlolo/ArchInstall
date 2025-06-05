@@ -19,7 +19,7 @@
 
 
 - name: check if the service exists
-#if not keep it as it is : it may have been modified by the user
+#if yes keep it as it is : it may have been modified by the user
   become: yes
   ansible.builtin.stat:
     path: /etc/systemd/system/PubSysFigures.service

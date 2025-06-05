@@ -28,3 +28,27 @@
   command: make -j
   args:
     chdir: /tmp/Marcel
+
+
+- name: create target directory if needed
+  become: yes
+  file:
+    path: /usr/local/lib/Marcel
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Install Marcel
+  become: yes
+  command: sh install.sh
+  args:
+    chdir: /tmp/Marcel
+    creates: /usr/local/lib/Marcel/mod_1wire.so
+
+- name: cleaning
+  file:
+    path: /tmp/Marcel
+    state: absent
+
