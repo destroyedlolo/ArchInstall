@@ -168,6 +168,10 @@ Following steps are only needed if you want to install my own automation solutio
 # Step 3 : Smart home tools
 
 This step installs all tools needed for Automation and/or Smart Homing.
+
+> [!NOTE]
+> As long as you're having a fully working system, this playbook doesn't rely on previous steps
+
 > [!WARNING]
 > Tools are only installed but not full configured.
 > - First, because each installation has its own needs / processes / automatition
@@ -179,4 +183,5 @@ This step installs all tools needed for Automation and/or Smart Homing.
 - [OWFS](roles/SmartHome.owfs) : Well known 1-wire bus driver
 - [Mosquitto](roles/Mosquitto) : MQTT broker
 - [Marcel](roles/destroyedlolo.Marcel) : Gateway between environmental events and the MQTT bus (and more). See [Marcel repo](https://github.com/destroyedlolo/Marcel)
+- [Séléné](roles/destroyedlolo.Selene) : Low level automation framework. See [Séléné repo](https://github.com/destroyedlolo/Selene)
 - [PostgreSQL](roles/PostgreSQL)
