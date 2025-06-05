@@ -1,0 +1,10 @@
+---
+
+- name: check if Selene is already installed
+  stat:
+    path: /usr/local/bin/Selene
+  register: Selene
+
+- name: Install it if not
+  include_tasks: installSelene.yml
+  when: not Selene.stat.exists

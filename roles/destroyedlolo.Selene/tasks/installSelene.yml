@@ -1,0 +1,53 @@
+---
+
+- name: Clone the repository
+  git:
+    repo: https://github.com/destroyedlolo/Selene.git
+    dest: "/tmp/Selene"
+    force: true
+
+- name: comments out all options
+  replace:
+    path: "/tmp/Selene/remake.sh"
+    regexp: '^(USE_.*)$'
+    replace: '# \1'
+
+- name: activate requested ones
+  replace:
+    path: "/tmp/Selene/remake.sh"
+    regexp: '^# (USE_{{ item }}.*)$'
+    replace: '\1'
+  loop: '{{ Selene_modules }}'
+
+- name: rebuild the Makefile
+  command: sh remake.sh
+  args:
+    chdir: /tmp/Selene
+
+- name: Compile Selene
+  command: make -j
+  args:
+    chdir: /tmp/Selene
+
+
+- name: create target directory if needed
+  become: yes
+  file:
+    path: /usr/local/lib/Selene
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Install Selene
+  become: yes
+  command: sh install.sh
+  args:
+    chdir: /tmp/Selene
+    creates: /usr/local/lib/libSelene.so
+
+- name: cleaning
+  file:
+    path: /tmp/Selene
+    state: absent

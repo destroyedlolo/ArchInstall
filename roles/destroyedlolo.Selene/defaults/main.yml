@@ -1,0 +1,11 @@
+---
+
+# Selene's modules to activate
+# note : 1WIRE is mandatory to let ansible destect a full Selene install
+Selene_modules: []
+
+#  - CURSES
+#  - OLED
+#  - LCD
+#  - DRMCAIRO
+#  - USE_DRMC_WITH_FB
